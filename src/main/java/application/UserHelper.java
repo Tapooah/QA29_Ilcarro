@@ -1,6 +1,7 @@
 package application;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
 public class UserHelper extends HelperBase {
@@ -36,5 +37,24 @@ public class UserHelper extends HelperBase {
 
     public boolean isLogOutPresent() {
         return isElementPresent(By.xpath("//a[text()=' Logout ']"));
+    }
+
+    public void openRegistrationForm() {
+        click(By.xpath("//a[text()=' Sign up ']"));
+    }
+
+    public void fillRegistrationForm(String name, String lastname, String mail, String pass) {
+        type(By.id("name"), name);
+        type(By.id("lastName"), lastname);
+        type(By.id("email"), mail);
+        type(By.id("password"), pass);
+    }
+
+    public void checkPolicy() {
+//        click(By.xpath("//label[@for='terms-of-use']"));
+        JavascriptExecutor js = (JavascriptExecutor) wd;
+        js.executeScript("document.querySelector('#terms-of-use').checked=true;");
+
+
     }
 }

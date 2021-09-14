@@ -8,14 +8,6 @@ public class LoginTest extends TestBase {
 
 
     @Test
-    public void loginSuccess() {
-        appManager.getUserHelper().openLoginForm();
-        appManager.getUserHelper().fillLoginForm("ololo_tester@gmail.com", "Ololo_Tester123");
-        appManager.getUserHelper().submitForm();
-        Assert.assertTrue(appManager.getUserHelper().isLogged());
-    }
-
-    @Test
     public void negativeLoginWrongPassword() {
         appManager.getUserHelper().openLoginForm();
         appManager.getUserHelper().fillLoginForm("ololo_tester@gmail.com", "OloloTester123");
@@ -23,10 +15,21 @@ public class LoginTest extends TestBase {
         Assert.assertFalse(appManager.getUserHelper().isLogged());
     }
 
+
+    @Test
+    public void loginSuccess() {
+        appManager.getUserHelper().openLoginForm();
+        appManager.getUserHelper().fillLoginForm("ololo_tester@gmail.com", "Ololo_Tester123");
+        appManager.getUserHelper().submitForm();
+        Assert.assertTrue(appManager.getUserHelper().isLogged());
+    }
+
+
+
     @AfterMethod
     public void postCondition() {
         if (appManager.getUserHelper().isLogOutPresent()) {
-            appManager.getUserHelper().logout();
+           appManager.getUserHelper().logout();
         }
 
     }

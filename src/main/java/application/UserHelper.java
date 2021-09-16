@@ -1,5 +1,6 @@
 package application;
 
+import models.User;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -49,10 +50,24 @@ public class UserHelper extends HelperBase {
         type(By.id("name"), name);
         type(By.id("lastName"), lastname);
         type(By.id("email"), mail);
-        click(By.xpath("//input[@id='email']"));
+//        click(By.xpath("//input[@id='email']"));
         type(By.id("password"), pass);
         click(By.xpath("//input[@id='email']"));
     }
+
+
+    //-----------------reload method--------------------------
+
+    public void fillRegistrationForm(User user) {
+        type(By.id("name"), user.getName());
+        type(By.id("lastName"), user.getLastName());
+        type(By.id("email"), user.getEmail());
+        type(By.id("password"), user.getPassword());
+        click(By.xpath("//input[@id='email']"));
+    }
+
+    //-----------------------------------------------------------
+
 
     public void checkPolicy() {
 //        click(By.xpath("//label[@for='terms-of-use']"));
@@ -72,6 +87,16 @@ public class UserHelper extends HelperBase {
 //        click(By.xpath("//button[text()='Ok']"));
         return isElementPresent(By.xpath("//input[@className='ng-touched ng-dirty ng-invalid']"));
     }
+
+    public void pause(int millies) {
+
+        try {
+            Thread.sleep(millies);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    
 }
 //<button _ngcontent-jec-c101="" type="submit">Y’alla!</button>
 //<button _ngcontent-jec-c101="" type="submit" disabled>Y’alla!</button>

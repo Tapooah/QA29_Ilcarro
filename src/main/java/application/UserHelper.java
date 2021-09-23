@@ -17,8 +17,13 @@ public class UserHelper extends HelperBase {
 
     public void fillLoginForm(String email, String pass) {
         type(By.id("email"), email);
-
         type(By.id("password"), pass);
+    }
+
+    public void fillLoginForm(User user) {
+
+        type(By.id("email"), user.getEmail());
+        type(By.id("password"), user.getPassword());
 
     }
 

@@ -7,7 +7,7 @@ public class User {
     String lastName;
 
     //fluent interface or fluent style
-//         changing void -> User and set -> with
+//         changing "void" -> User and "set" -> "with"
 //    adding        return this;
 
 

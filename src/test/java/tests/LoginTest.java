@@ -12,7 +12,7 @@ public class LoginTest extends TestBase {
     public void negativeLoginWrongPassword() {
 
         appManager.getUserHelper().openLoginForm();
-        appManager.getUserHelper().fillLoginForm("pablus@gmail.com", "Pablus_tester123");
+        appManager.getUserHelper().fillLoginForm("pablus@gmail.com", "Pablus_tester");
         appManager.getUserHelper().submitForm();
         Assert.assertFalse(appManager.getUserHelper().isLogged());
     }

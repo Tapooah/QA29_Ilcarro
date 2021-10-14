@@ -149,6 +149,7 @@ public class SearchHelper extends HelperBase {
         String[] dateF = dateFrom.split("/");
         String[] dateT = dateTo.split("/");
         click(By.id("dates"));
+
 //date From
         int currentMonth = LocalDate.now().getMonthValue();//10
         int monthFrom = Integer.parseInt(dateF[0]);//10
@@ -174,10 +175,10 @@ public class SearchHelper extends HelperBase {
         int allMonth2 = 12 - monthFrom;//10
         int countClickTo = 0;
 
-        if (monthTo <= monthFrom) {
+        if (monthTo < monthFrom) {
             countClickTo = allMonth2 + monthTo;
         }
-        if (monthTo > monthFrom) {
+        if (monthTo >= monthFrom) {
             countClickTo = monthTo - monthFrom;
         }
 

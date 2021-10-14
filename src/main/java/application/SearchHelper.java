@@ -93,11 +93,18 @@ public class SearchHelper extends HelperBase {
         click(By.xpath(locatorFrom));
 
 //        dateTo
-        int countClick = Integer.parseInt(dateT[0]) - currentMonth;
+        int fMonth = Integer.parseInt(dateT[0]);
+        int allMonth = 12 - currentMonth;
+        int countClick = 0;
+
+        if ((fMonth <= currentMonth)) {
+            countClick = allMonth + fMonth;
+        }
+
         for (int i = 1; i <= countClick; i++) {
             click(By.xpath("//button[@aria-label='Next month']"));
         }
-
+//        pause(1000);
         String locatorTo = String.format("//div[text()=' %s ']", dateT[1]);
 
         click(By.xpath(locatorTo));

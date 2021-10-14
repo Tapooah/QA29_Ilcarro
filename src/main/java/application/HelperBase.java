@@ -1,6 +1,7 @@
 package application;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -31,7 +32,7 @@ public class HelperBase {
         return wd.findElements(locator).size() > 0;
     }
 
-    public void pause(int ms){
+    public void pause(int ms) {
         try {
             Thread.sleep(ms);
         } catch (InterruptedException e) {
@@ -39,4 +40,8 @@ public class HelperBase {
         }
     }
 
+    public void scroll(int x, int y) {
+        JavascriptExecutor js = (JavascriptExecutor) wd;
+        js.executeScript("window.scrollBy(" + x + "," + y + ")");
+    }
 }

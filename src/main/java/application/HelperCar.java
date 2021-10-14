@@ -73,7 +73,7 @@ public class HelperCar extends HelperBase {
 
     public void clickButtonSubmit() {
 //        pause(1000);
-       new WebDriverWait(wd, 10).until(ExpectedConditions.elementToBeClickable(wd.findElement(By.xpath("//button[.='Submit']"))));
+        new WebDriverWait(wd, 10).until(ExpectedConditions.elementToBeClickable(wd.findElement(By.xpath("//button[.='Submit']"))));
         click(By.xpath("//button[.='Submit']"));
     }
 

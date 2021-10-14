@@ -1,15 +1,11 @@
 package tests;
 
 
-import models.User;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class SearchTest extends TestBase {
 
-    //-------------------по условиям ДЗ preconditions не требуется.-------------------
 
 //    @BeforeMethod
 //    public void preconditions() {
@@ -24,14 +20,38 @@ public class SearchTest extends TestBase {
     @Test
     public void newSearchTest() {
 
-        appManager.getUserHelper().clickOnSearchTab();
-        appManager.getUserHelper().fillFormForSearching();
-
-        Assert.assertTrue(appManager.getUserHelper().isFilledSearchFine());
+        appManager.getSearchHelper().clickOnSearchTab();
+        appManager.getSearchHelper().fillFormForSearching();
+        Assert.assertTrue(appManager.getSearchHelper().isFilledSearchFine());
         //out of HW
 //        appManager.getUserHelper().chooseAndRentCar();
 
     }
+
+    @Test
+    public void searchTestByTypeNegative() {
+
+
+    }
+
+    @Test
+    public void searchDateBySelectCurrentMonth() {
+        appManager.getSearchHelper().fillSearchForm("Rehovot", "10/25/2021", "12/30/2021");
+        appManager.getUserHelper().submitForm();
+        Assert.assertTrue(appManager.getSearchHelper().isListOfCarsAppeared());
+    }
+
+    @Test
+    public void searchDateByArrows(){
+
+        appManager.getSearchHelper().selectDateInFuture("Rehovot", "12/30/2021");
+        appManager.getUserHelper().submitForm();
+        Assert.assertTrue(appManager.getSearchHelper().isListOfCarsAppeared());
+    }
+
+
+
+
 //    @AfterMethod
 //    public void postCondition() {
 //

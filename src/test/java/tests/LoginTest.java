@@ -26,8 +26,11 @@ public class LoginTest extends TestBase {
         appManager.getUserHelper().submitForm();
         Assert.assertTrue(appManager.getUserHelper().isLogged());
     }
+
     @Test
     public void loginSuccess() {
+
+        logger.info("Login with email: pablus@gmail.com & Pablus_tester123");
         appManager.getUserHelper().openLoginForm();
         appManager.getUserHelper().fillLoginForm("pablus@gmail.com", "Pablus_tester123");
         appManager.getUserHelper().submitForm();
@@ -35,11 +38,10 @@ public class LoginTest extends TestBase {
     }
 
 
-
     @AfterMethod
     public void postCondition() {
         if (appManager.getUserHelper().isLogOutPresent()) {
-           appManager.getUserHelper().logout();
+            appManager.getUserHelper().logout();
         }
 
     }

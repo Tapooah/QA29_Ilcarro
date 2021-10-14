@@ -21,6 +21,11 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.20'
 
 //----- lombok library -----
+
+//----- logBack classic-----
+    implementation 'ch.qos.logback:logback-classic:1.2.3'
+
+//----- logBack classic-----
 }
 
 test {

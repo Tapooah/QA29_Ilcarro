@@ -15,7 +15,7 @@ public class CarLombok {
     String address;
     String make;
     String model;
-    String  year;
+    String year;
     String engine;
     String fuel;
     String gear;
@@ -25,7 +25,7 @@ public class CarLombok {
     String clasS;
     String fuelConsumption;
     String carRegNumber;
-    String  price;
+    String price;
     String distanceIncluded;
     String typeFeature;
     String about;

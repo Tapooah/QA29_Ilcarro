@@ -13,18 +13,18 @@ public class RegistrationTest extends TestBase {
 
     }
 
-    @Test
-    public void registrationTest() {
-
-        int i = (int) ((System.currentTimeMillis() / 1000) % 3600);
-
-        appManager.getUserHelper().openRegistrationForm();
-        appManager.getUserHelper().fillRegistrationForm("Ololo", "Tester", "ololo_tester" + i + "@gmail.com", "Tester#123");
-        appManager.getUserHelper().checkPolicy();
-        appManager.getUserHelper().submitForm();
-        Assert.assertTrue(appManager.getUserHelper().isRegistered());
-
-    }
+//    @Test
+//    public void registrationTest() {
+//
+//        int i = (int) ((System.currentTimeMillis() / 1000) % 3600);
+//
+//        appManager.getUserHelper().openRegistrationForm();
+//        appManager.getUserHelper().fillRegistrationForm("Pablus", "Yatonu", "pablus" + i + "@gmail.com", "Pablus_tester" + i);
+//        appManager.getUserHelper().checkPolicy();
+//        appManager.getUserHelper().submitForm();
+//        Assert.assertTrue(appManager.getUserHelper().isRegistered());
+//
+//    }
 
     //******************************************* MODEL *****************************************
     @Test
@@ -32,7 +32,7 @@ public class RegistrationTest extends TestBase {
 
         int i = (int) ((System.currentTimeMillis() / 1000) % 3600);
         User user = new User()
-                .withName("Pablus").withLastName("Yatonu").withEmail("pablus"+i+"@gmail.com").withPassword("Pablus_tester"+i);
+                .withName("Pablus").withLastName("Yatonu").withEmail("pablus" + i + "@gmail.com").withPassword("Pablus_tester" + i);
 //        User user = new User()
 //                .withName("Pablus").withLastName("Yatonu").withEmail("pablus@gmail.com").withPassword("Pablus_tester123");
 
@@ -50,7 +50,7 @@ public class RegistrationTest extends TestBase {
     public void regTestNegativeWrongField() {
         int i = (int) ((System.currentTimeMillis() / 1000) % 3600);
         User user = new User()
-                .withName("Pablus").withLastName("Yatonu").withEmail("pablus"+i+"@gmail.com").withPassword("ablus_tester"+i);
+                .withName("Pablus").withLastName("Yatonu").withEmail("pablus" + i + "@gmail.com").withPassword("ablus_tester" + i);
 
         appManager.getUserHelper().openRegistrationForm();
         appManager.getUserHelper().fillRegistrationForm(user);
@@ -65,6 +65,7 @@ public class RegistrationTest extends TestBase {
         int i = (int) ((System.currentTimeMillis() / 1000) % 3600);
         User user = new User()
                 .withName("Pablus").withLastName("Yatonu").withEmail("pablus@gmail.com").withPassword("Pablus_tester123");
+        logger.info("TestData: name: " + user.getName() + "; last name: " + user.getLastName() + "; email: " + user.getEmail() + "; password: " + user.getPassword());
         appManager.getUserHelper().openRegistrationForm();
         appManager.getUserHelper().fillRegistrationForm(user);
         appManager.getUserHelper().checkPolicy();

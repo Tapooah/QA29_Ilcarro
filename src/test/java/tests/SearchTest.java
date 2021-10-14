@@ -44,7 +44,7 @@ public class SearchTest extends TestBase {
     @Test
     public void searchDateByArrows(){
 
-        appManager.getSearchHelper().selectDateInFuture("Rehovot", "3/30/2022");
+        appManager.getSearchHelper().selectDateInFuture("Rehovot", "10/25/2021", "12/30/2022");
         appManager.getUserHelper().submitForm();
         Assert.assertTrue(appManager.getSearchHelper().isListOfCarsAppeared());
     }

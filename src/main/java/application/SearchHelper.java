@@ -76,42 +76,63 @@ public class SearchHelper extends HelperBase {
 
 
     //---------------------------------------HW-for-15.10.21--------------------------------------------------
+/*
+//    public void selectDateInFuture(String city, String dateTo) {
+//        //input city
+//        fillInputCity(city);
+//        //about dates
+//        int currentMonth = LocalDate.now().getMonthValue();
+//        int currentDay = LocalDate.now().getDayOfMonth();
+//        int currentYear = LocalDate.now().getYear();
+//        int[] arrayDate = {currentMonth, currentDay, currentYear};
+//
+//        String[] dateT = dateTo.split("/");
+//        click(By.id("dates"));
+//        ///dateFrom
+//        String locatorFrom = String.format("//div[text()=' %s ']", currentDay);
+//        click(By.xpath(locatorFrom));
+//
+////        dateTo
+//        int fMonth = Integer.parseInt(dateT[0]);
+//        int allMonth = 12 - currentMonth;
+//        int countClick = 0;
+//
+//        if ((fMonth <= currentMonth)) {
+//            countClick = allMonth + fMonth;
+//        }
+//
+//        for (int i = 1; i <= countClick; i++) {
+//            click(By.xpath("//button[@aria-label='Next month']"));
+//        }
+////        pause(1000);
+//        String locatorTo = String.format("//div[text()=' %s ']", dateT[1]);
+//
+//        click(By.xpath(locatorTo));
+//}
+*/
 
-    public void selectDateInFuture(String city, String dateTo) {
+    public void selectDateInFuture(String city, String dateFrom, String dateTo) {
         //input city
         fillInputCity(city);
-        //about dates
-        int currentMonth = LocalDate.now().getMonthValue();
-        int currentDay = LocalDate.now().getDayOfMonth();
-        int currentYear = LocalDate.now().getYear();
-        int[] arrayDate = {currentMonth, currentDay, currentYear};
 
+        //about dates
+        String[] dateF = dateFrom.split("/");
         String[] dateT = dateTo.split("/");
         click(By.id("dates"));
-        ///dateFrom
-        String locatorFrom = String.format("//div[text()=' %s ']", currentDay);
+
+        String locatorFrom = String.format("//div[text()=' %s ']", dateF[1]);
         click(By.xpath(locatorFrom));
 
-//        dateTo
+        int currentMonth = LocalDate.now().getMonthValue();
         int fMonth = Integer.parseInt(dateT[0]);
-        int allMonth = 12 - currentMonth;
-        int countClick = 0;
-
-        if ((fMonth <= currentMonth)) {
-            countClick = allMonth + fMonth;
-        }
-
+        int countClick = fMonth - currentMonth;
         for (int i = 1; i <= countClick; i++) {
             click(By.xpath("//button[@aria-label='Next month']"));
         }
-//        pause(1000);
+
         String locatorTo = String.format("//div[text()=' %s ']", dateT[1]);
-
         click(By.xpath(locatorTo));
-
     }
-
-
     //-------------------------------------^^HW-for-15.10.21^^------------------------------------------------
 
 }

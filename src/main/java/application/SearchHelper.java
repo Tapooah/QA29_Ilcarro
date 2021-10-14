@@ -6,7 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.time.LocalDate;
-import java.util.Arrays;
 
 public class SearchHelper extends HelperBase {
     public SearchHelper(WebDriver wd) {
@@ -77,6 +76,7 @@ public class SearchHelper extends HelperBase {
 
     //---------------------------------------HW-for-15.10.21--------------------------------------------------
 /*
+                                            v.1
 //    public void selectDateInFuture(String city, String dateTo) {
 //        //input city
 //        fillInputCity(city);
@@ -110,7 +110,37 @@ public class SearchHelper extends HelperBase {
 //        click(By.xpath(locatorTo));
 //}
 */
+/*
+                                        v.2
 
+//    public void selectDateInFuture(String city, String dateFrom, String dateTo) {
+//        //input city
+//        fillInputCity(city);
+//
+//        //about dates
+//        String[] dateF = dateFrom.split("/");
+//        String[] dateT = dateTo.split("/");
+//        click(By.id("dates"));
+//
+//        String locatorFrom = String.format("//div[text()=' %s ']", dateF[1]);
+//        click(By.xpath(locatorFrom));
+//
+//        int currentMonth = LocalDate.now().getMonthValue();
+//        int fMonth = Integer.parseInt(dateT[0]);
+//        int countClick = fMonth - currentMonth;
+//        for (int i = 1; i <= countClick; i++) {
+//            click(By.xpath("//button[@aria-label='Next month']"));
+//        }
+//
+//        String locatorTo = String.format("//div[text()=' %s ']", dateT[1]);
+//        click(By.xpath(locatorTo));
+//    }
+*/
+
+/*
+                                     //final v.3
+
+ */
     public void selectDateInFuture(String city, String dateFrom, String dateTo) {
         //input city
         fillInputCity(city);
@@ -119,20 +149,47 @@ public class SearchHelper extends HelperBase {
         String[] dateF = dateFrom.split("/");
         String[] dateT = dateTo.split("/");
         click(By.id("dates"));
+//date From
+        int currentMonth = LocalDate.now().getMonthValue();//10
+        int monthFrom = Integer.parseInt(dateF[0]);//10
+        int allMonth = 12 - currentMonth;//2
+        int countClickFrom = 0;
 
+        if (monthFrom < currentMonth) {
+            countClickFrom = allMonth + monthFrom;
+        }
+        if (monthFrom >= currentMonth) {
+            countClickFrom = monthFrom - currentMonth;
+        }
+        for (int i = 1; i <= countClickFrom; i++) {
+            click(By.xpath("//button[@aria-label='Next month']"));
+        }
+        pause(1000);
         String locatorFrom = String.format("//div[text()=' %s ']", dateF[1]);
         click(By.xpath(locatorFrom));
 
-        int currentMonth = LocalDate.now().getMonthValue();
-        int fMonth = Integer.parseInt(dateT[0]);
-        int countClick = fMonth - currentMonth;
-        for (int i = 1; i <= countClick; i++) {
-            click(By.xpath("//button[@aria-label='Next month']"));
+//date To
+
+        int monthTo = Integer.parseInt(dateT[0]);//6
+        int allMonth2 = 12 - monthFrom;//10
+        int countClickTo = 0;
+
+        if (monthTo <= monthFrom) {
+            countClickTo = allMonth2 + monthTo;
+        }
+        if (monthTo > monthFrom) {
+            countClickTo = monthTo - monthFrom;
         }
 
+        for (int i = 1; i <= countClickTo; i++) {
+            click(By.xpath("//button[@aria-label='Next month']"));
+        }
+        pause(1000);
         String locatorTo = String.format("//div[text()=' %s ']", dateT[1]);
+
         click(By.xpath(locatorTo));
     }
+
     //-------------------------------------^^HW-for-15.10.21^^------------------------------------------------
 
 }
